@@ -61,6 +61,8 @@ A complete, enterprise-ready Retrieval Augmented Generation (RAG) system with mu
 
 ## Quick Start
 
+> **📖 For detailed setup instructions, troubleshooting, and usage examples, see [SETUP_AND_USAGE.md](SETUP_AND_USAGE.md)**
+
 ### Prerequisites
 
 - Docker & Docker Compose
@@ -80,20 +82,41 @@ A complete, enterprise-ready Retrieval Augmented Generation (RAG) system with mu
 2. **Set up environment variables**
    ```bash
    cp .env.example .env
-   # Edit .env and add your API keys
+   # Edit .env and add your API keys (OPENAI_API_KEY required)
    ```
 
-3. **Start infrastructure services**
+3. **Start all services with Docker**
+   ```bash
+   docker-compose up -d
+   ```
+
+4. **Access the application**
+   - Frontend: http://localhost:5173
+   - API: http://localhost:3000
+   - API Docs: http://localhost:3000/api/docs
+
+**That's it!** The system is now running. See [SETUP_AND_USAGE.md](SETUP_AND_USAGE.md) for:
+- Step-by-step setup guide
+- How to upload documents
+- How to search and chat
+- Troubleshooting tips
+- Production deployment
+
+### Alternative: Development Mode
+
+For development with hot-reload:
+
+1. **Start infrastructure only**
    ```bash
    docker-compose up -d postgres redis qdrant elasticsearch minio rabbitmq
    ```
 
-4. **Install dependencies**
+2. **Install dependencies**
    ```bash
    pnpm install
    ```
 
-5. **Run database migrations**
+3. **Run database migrations**
    ```bash
    pnpm db:migrate
    ```
@@ -401,15 +424,21 @@ docker-compose restart ingestion-worker embedding-worker
 
 ## Documentation
 
-See the following files for detailed information:
+### Getting Started
+- **[Setup and Usage Guide](SETUP_AND_USAGE.md)** ⭐ - Complete step-by-step guide to set up and use the system
+- **[Quick Reference](QUICK_REFERENCE.md)** 🚀 - Common commands and API calls at a glance
 
-- [Architecture](ARCHITECTURE.md) - System architecture and data flow
-- [Database Schema](DATABASE_SCHEMA.md) - Complete database design
-- [Ingestion Engine](INGESTION_ENGINE.md) - Document parsing and ingestion
-- [Chunking System](CHUNKING_SYSTEM.md) - Advanced chunking strategies
-- [Embedding Pipeline](EMBEDDING_PIPELINE.md) - Embedding generation and storage
+### Technical Documentation
+- [Architecture](ARCHITECTURE.md) - System architecture and data flow diagrams
+- [Database Schema](DATABASE_SCHEMA.md) - Complete database design with PostgreSQL and Qdrant
+- [Project Structure](PROJECT_STRUCTURE.md) - Monorepo layout and folder organization
+
+### Implementation Details
+- [Ingestion Engine](INGESTION_ENGINE.md) - Multi-format document parsing (PDF, PPTX, Text, URLs)
+- [Chunking System](CHUNKING_SYSTEM.md) - Advanced chunking strategies with implementations
+- [Embedding Pipeline](EMBEDDING_PIPELINE.md) - Embedding generation with batching and versioning
 - [Vector Search](VECTOR_SEARCH_AND_ORCHESTRATION.md) - Hybrid search and LLM orchestration
-- [Memory Layer](MEMORY_AND_ENGINEERING_DECISIONS.md) - Memory system and engineering decisions
+- [Memory Layer & Engineering Decisions](MEMORY_AND_ENGINEERING_DECISIONS.md) - Memory system and all technical decisions
 
 ## License
 
