@@ -426,6 +426,7 @@ docker-compose restart ingestion-worker embedding-worker
 
 ### Getting Started
 - **[Setup and Usage Guide](SETUP_AND_USAGE.md)** ⭐ - Complete step-by-step guide to set up and use the system
+- **[Quick Reference](QUICK_REFERENCE.md)** 🚀 - Common commands and API calls at a glance
 
 ### Technical Documentation
 - [Architecture](ARCHITECTURE.md) - System architecture and data flow diagrams
